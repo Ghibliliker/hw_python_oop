@@ -4,7 +4,7 @@
 базовой валютой были взяты белорусские рубли - автор патриот :)
 """
 import datetime as dt
-from typing import Optional
+from typing import Optional, Union
 
 
 class Record:
@@ -75,7 +75,7 @@ class CashCalculator(Calculator):
                      'usd': (USD_RATE, 'USD'),
                      'eur': (EURO_RATE, 'Euro')}
 
-    def exchanger(self, money: float, currency: str) -> (float, str):
+    def exchanger(self, money: float, currency: str) -> Union[float, str]:
         """Перевод в запрашиваемую валюту"""
         rate, title = self.currency_info[currency]
         if rate and title:
