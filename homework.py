@@ -4,7 +4,7 @@
 базовой валютой были взяты белорусские рубли - автор патриот :)
 """
 import datetime as dt
-from typing import Optional, Union
+from typing import Optional, Tuple
 
 
 class Record:
@@ -75,7 +75,7 @@ class CashCalculator(Calculator):
                      'usd': (USD_RATE, 'USD'),
                      'eur': (EURO_RATE, 'Euro')}
 
-    def exchanger(self, money: float, currency: str) -> Union[float, str]:
+    def exchanger(self, money: float, currency: str) -> Tuple[float, str]:
         """Перевод в запрашиваемую валюту"""
         rate, title = self.currency_info[currency]
         if rate and title:
@@ -89,7 +89,7 @@ class CashCalculator(Calculator):
         if x > 0:
             answer, name = self.exchanger(x, currency)
             return f'На сегодня осталось {answer} {name}'
-        elif x == 0 and currency in ('rub', 'eur', 'usd'):
+        elif x == 0:
             return 'Денег нет, держись'
         else:
             answer, name = self.exchanger(x, currency)
